@@ -5,5 +5,6 @@ For more information and hardware used, see here:<br /> https://www.zuidwijk.com
 Alternative project: <br /> https://frenck.dev/diy-smart-doorbell-for-just-2-dollar/
 
 This is run with Home-assistant: <br /> https://www.home-assistant.io/
+and the ESPHome integration: <br /> https://esphome.io/
 
-And the automation "doorbell_automation.yaml".
+For notifications you can ues the automation "doorbell_automation.yaml".
