@@ -1,5 +1,10 @@
+substitutions:
+  devicename: "doorbell"
+  upper_devicename: "Door-Bell"
+
 esphome:
-  name: doorbell
+  name: "${devicename}"
+  friendly_name: "${upper_devicename}"
   platform: ESP8266
   board: d1_mini
 
@@ -23,7 +28,7 @@ wifi:
 
   # Enable fallback hotspot in case wifi connection fails
   ap:
-    ssid: "Doorbell"
+    ssid: "${upper_devicename}"
     password: !secret wifi_hotspot_password
 
 # Enable Web server.
