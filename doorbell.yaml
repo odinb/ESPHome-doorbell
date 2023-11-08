@@ -1,3 +1,6 @@
+# ESPHome based doorbell
+# https://www.zuidwijk.com/product/smart-doorbell/
+
 substitutions:
   devicename: "doorbell"
   upper_devicename: "Door-Bell"
