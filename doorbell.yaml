@@ -1,16 +1,21 @@
 # ESPHome based doorbell
 # https://www.zuidwijk.com/product/smart-doorbell/
+# https://github.com/zuidwijk/esphome-doorbell
 
 substitutions:
-  devicename: "doorbell"
-  upper_devicename: "Door-Bell"
+  name: doorbell
+  friendly_name: Doorbell
 
 esphome:
-  name: "${devicename}"
-  friendly_name: "${upper_devicename}"
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
   platform: ESP8266
   board: d1_mini
-
+  project:
+    name: zuidwijk.doorbell
+    version: "2.0"
+    
 # Enable logging
 logger:
 
@@ -21,8 +26,13 @@ api:
 
 # Enable over-the-air updates.
 ota:
-  safe_mode: true
+  platform: esphome
   password: !secret ota_password01
+
+safe_mode:
+  disabled: false
+  reboot_timeout: 10min
+  num_attempts: 5
 
 # Connect to WiFi.
 wifi:
@@ -31,7 +41,7 @@ wifi:
 
   # Enable fallback hotspot in case wifi connection fails
   ap:
-    ssid: "${upper_devicename}"
+    ssid: ${friendly_name}
     password: !secret wifi_hotspot_password
 
 # Enable Web server.
@@ -76,13 +86,13 @@ globals:
 # Exposed switches.
 switch:
   - platform: restart
-    name: "Doorbell Restart"
+    name: Doorbell Restart
   # Switch to turn on/off the chime.
   - platform: gpio
     pin:
       number: D1
       inverted: false
-    name: "Doorbell Relay"
+    name: Doorbell Relay
     id: relay
     internal: true
     icon: mdi:alarm-bell
@@ -110,7 +120,7 @@ binary_sensor:
       number: D5
       mode: INPUT_PULLUP
       inverted: true
-    name: "Doorbell"
+    name: Doorbell
     filters:
       # Small filter, to debounce the button press.
       - delayed_on: 25ms
@@ -128,4 +138,4 @@ binary_sensor:
       - switch.turn_off: relay        
  
   - platform: status
-    name: "Status Doorbell"
+    name: Status Doorbell
