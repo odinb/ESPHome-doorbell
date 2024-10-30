@@ -1,13 +1,14 @@
 alias: Notify Doorbell
 description: ""
-trigger:
-  - platform: state
-    entity_id: binary_sensor.doorbell
+triggers:
+  - trigger: state
+    entity_id:
+      - binary_sensor.doorbell_doorbell
     from: "off"
     to: "on"
-condition: []
-action:
-  - service: notify.all_devices
+conditions: []
+actions:
+  - action: notify.all_devices
     data:
       message: Ding dong! Someone is at the door!
       title: Doorbell pressed.
