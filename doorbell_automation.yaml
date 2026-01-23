@@ -8,13 +8,12 @@ triggers:
     to: "on"
 conditions: []
 actions:
-  - action: notify.all_devices
+  - action: notify.all_mobile_devices
     data:
-      message: Ding dong! Someone is at the door!
-      title: Doorbell pressed.
+      message: Ding dong! Someone is at the door!!
+      title: Doorbell Pressed.
       data:
         push:
-          sound:
-            name: default
-            critical: 1
-            volume: 1
+          category: doorbell
+          interruption-level: critical
+        channel: alarm
