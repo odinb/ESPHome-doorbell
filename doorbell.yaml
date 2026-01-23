@@ -131,7 +131,7 @@ binary_sensor:
       number: D5
       mode: INPUT_PULLUP
       inverted: true
-    name: Doorbell Button
+    name: Doorbell
     filters:
       # Small filter, to debounce the button press.
       - delayed_on: 25ms
@@ -149,4 +149,4 @@ binary_sensor:
       - switch.turn_off: relay        
  
   - platform: status
-    name: Doorbell Status
+    name: Status Doorbell
