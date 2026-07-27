@@ -25,6 +25,7 @@ esp8266:
 
 # Enable logging
 logger:
+  level: WARN
 
 # Enable Home Assistant API
 api:
@@ -40,6 +41,8 @@ safe_mode:
   disabled: false
   reboot_timeout: 10min
   num_attempts: 5
+
+captive_portal:
 
 # Connect to WiFi.
 wifi:
@@ -62,7 +65,7 @@ web_server:
 time:
   - platform: homeassistant
     id: homeassistant_time
- 
+
 # Text sensors with general information.
 text_sensor:
   - platform: version
@@ -86,13 +89,13 @@ sensor:
     name: Doorbell WiFi Signal
     update_interval: 60s
 
-# Global to store the on/off state of the chime 
+# Global to store the on/off state of the chime
 globals:
   - id: chime
     type: bool
     restore_value: true
-    initial_value: 'true'
- 
+    initial_value: "true"
+
 # Exposed switches.
 switch:
   - platform: restart
@@ -110,20 +113,20 @@ switch:
   - platform: template
     name: Doorbell Chime Active
     id: chime_active
-    restore_mode: 'RESTORE_DEFAULT_OFF'
+    restore_mode: "RESTORE_DEFAULT_OFF"
     turn_on_action:
       - globals.set:
           id: chime
-          value: 'true'
+          value: "true"
     turn_off_action:
       - globals.set:
           id: chime
-          value: 'false'
+          value: "false"
     lambda: |-
       return id(chime);
 
 # Binary sensor representing the
-# Doorbell button push.     
+# Doorbell button push.
 binary_sensor:
   # Doorbell button
   - platform: gpio
@@ -146,7 +149,7 @@ binary_sensor:
             - switch.turn_on: relay
     on_release:
       # On release, turn of the chime.
-      - switch.turn_off: relay        
- 
+      - switch.turn_off: relay
+
   - platform: status
     name: Status Doorbell
