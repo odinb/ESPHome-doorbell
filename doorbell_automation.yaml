@@ -1,11 +1,11 @@
 alias: Notify Doorbell
-description: ""
+description: Critical alert when someone rings the door
 triggers:
   - trigger: state
     entity_id:
       - binary_sensor.doorbell_doorbell
-    from: "off"
-    to: "on"
+    from: 'off'
+    to: 'on'
 conditions: []
 actions:
   - action: notify.all_mobile_devices
